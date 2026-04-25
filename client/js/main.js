@@ -56,7 +56,7 @@ function renderCards(services) {
       <span class="badge">${s.category}</span>
       <h3>${s.title}</h3>
       <div class="meta">by ${s.seller} · ${s.deliveryDays} days</div>
-      <div class="price">$${s.price}</div>
+      <div class="price">PKR ${s.price}</div>
       <div class="rating">⭐ ${s.rating} (${s.reviews} reviews)</div>
     `;
 
@@ -97,7 +97,7 @@ function renderServiceDetail(service) {
   document.getElementById('detail-desc').textContent = service.description || 'No description provided.';
   document.getElementById('detail-delivery').textContent = 'Delivery: ' + service.deliveryDays + ' day(s)';
   document.getElementById('detail-rating').textContent = 'Rating: ' + service.rating + ' (' + service.reviews + ' reviews)';
-  document.getElementById('detail-price').textContent = '$' + service.price;
+  document.getElementById('detail-price').textContent = 'PKR ' + service.price;
 }
 
 // ---- SEARCH ----
@@ -143,7 +143,7 @@ function openModal(service) {
   document.getElementById('modal-title').textContent = service.title;
   document.getElementById('modal-seller').textContent = 'by ' + service.seller;
   document.getElementById('modal-desc').textContent = service.description;
-  document.getElementById('modal-price').textContent = '$' + service.price;
+  document.getElementById('modal-price').textContent = 'PKR ' + service.price;
   document.getElementById('modal-rating').textContent = '⭐ ' + service.rating + ' (' + service.reviews + ' reviews)';
   document.getElementById('modal-delivery').textContent = service.deliveryDays + ' day delivery';
 
@@ -282,7 +282,7 @@ function renderDashboardList(containerId, items) {
     div.className = 'dashboard-item';
     div.innerHTML = `
       <strong>${item.title}</strong>
-      <span>$${item.price} · ${item.category}</span>
+      <span>PKR ${item.price} · ${item.category}</span>
     `;
     container.appendChild(div);
   });

@@ -5,7 +5,7 @@
     "category": "Design",
     "price": 25,
     "rating": 4.5,
-    "seller": "Ali Raza",
+    "seller": "Muhammad Haris Khan",
     "description": "I will design a professional logo for your business. High quality files included.",
     "deliveryDays": 3,
     "reviews": 42
@@ -16,7 +16,7 @@
     "category": "Web Dev",
     "price": 80,
     "rating": 4.2,
-    "seller": "Sana Khan",
+    "seller": "Muhammad Usama Khan",
     "description": "Full WordPress site with 5 pages, responsive design, and basic SEO setup.",
     "deliveryDays": 7,
     "reviews": 18
@@ -27,7 +27,7 @@
     "category": "Programming",
     "price": 50,
     "rating": 4.8,
-    "seller": "Usman Tariq",
+    "seller": "Muhammad Junaid Khan",
     "description": "Will write a Python script to clean and analyze your dataset. Pandas, matplotlib used.",
     "deliveryDays": 2,
     "reviews": 67
@@ -38,7 +38,7 @@
     "category": "Marketing",
     "price": 15,
     "rating": 3.9,
-    "seller": "Fatima Malik",
+    "seller": "Ahsan Shah",
     "description": "10 custom designed posts for Instagram or Facebook. Canva based templates.",
     "deliveryDays": 1,
     "reviews": 30
@@ -49,7 +49,7 @@
     "category": "Web Dev",
     "price": 120,
     "rating": 4.7,
-    "seller": "Hamza Shah",
+    "seller": "Muhammad Souman",
     "description": "Build a React app with hooks, routing, and API integration. Clean code guaranteed.",
     "deliveryDays": 5,
     "reviews": 22
@@ -60,7 +60,7 @@
     "category": "Writing",
     "price": 10,
     "rating": 4.1,
-    "seller": "Ayesha Bano",
+    "seller": "Khizer Ali",
     "description": "SEO-friendly 1000 word blog post on any topic. Plagiarism free.",
     "deliveryDays": 1,
     "reviews": 55
@@ -71,7 +71,7 @@
     "category": "Design",
     "price": 60,
     "rating": 4.6,
-    "seller": "Bilal Ahmed",
+    "seller": "Hamza",
     "description": "Full app wireframe and high fidelity mockup in Figma. Mobile and desktop versions.",
     "deliveryDays": 4,
     "reviews": 14
@@ -82,7 +82,7 @@
     "category": "Programming",
     "price": 30,
     "rating": 4.3,
-    "seller": "Nida Farooq",
+    "seller": "Hassan Waqar",
     "description": "Interactive Excel dashboard with charts, pivot tables, and slicers.",
     "deliveryDays": 2,
     "reviews": 29
