@@ -90,4 +90,3 @@ Tip: direct links like `index.html#services` and `index.html#dashboard` open tho
 
 - Data is stored in-memory (resets on server restart)
 - No database used — just JSON arrays
-- Built for learning purposes, not production use
