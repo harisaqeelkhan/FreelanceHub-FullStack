@@ -95,6 +95,31 @@
     </div>
   </div>
 
+  <!-- SERVICE DETAIL PAGE -->
+  <div class="page" id="service-detail">
+    <div class="detail-wrap" id="detail-wrap">
+      <button class="btn" onclick="showPage('services')">← Back to Services</button>
+
+      <div class="detail-card">
+        <span class="badge" id="detail-category">Category</span>
+        <h1 id="detail-title">Service title</h1>
+        <p class="detail-meta" id="detail-seller">by Seller</p>
+        <p class="detail-desc" id="detail-desc">Service description will show here.</p>
+
+        <div class="detail-points">
+          <p id="detail-delivery">Delivery: -</p>
+          <p id="detail-rating">Rating: -</p>
+          <p class="detail-price" id="detail-price">$0</p>
+        </div>
+
+        <div class="detail-actions">
+          <button class="btn" onclick="saveService()">Save</button>
+          <button class="btn btn-primary" onclick="hireService()">Hire Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- DASHBOARD PAGE -->
   <div class="page" id="dashboard">
     <div class="stats-row">

@@ -15,7 +15,8 @@ function showPage(pageId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
-  document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
+  const navItem = document.querySelector(`[data-page="${pageId}"]`);
+  if (navItem) navItem.classList.add('active');
 
   if (pageId === 'dashboard') loadDashboard();
 }
@@ -59,11 +60,44 @@ function renderCards(services) {
       <div class="rating">⭐ ${s.rating} (${s.reviews} reviews)</div>
     `;
 
-    card.addEventListener('click', () => openModal(s));
+    card.addEventListener('click', () => openServiceDetail(s.id));
     card.addEventListener('dragstart', handleDragStart);
 
     container.appendChild(card);
   });
+}
+
+// ---- SERVICE DETAIL PAGE ----
+async function openServiceDetail(serviceId) {
+  try {
+    const res = await fetch(`${API}/services/${serviceId}`);
+    if (!res.ok) throw new Error('Service not found');
+
+    const service = await res.json();
+    currentService = service;
+    renderServiceDetail(service);
+    showPage('service-detail');
+  } catch (err) {
+    const local = allServices.find(s => s.id === parseInt(serviceId));
+    if (!local) {
+      showToast('Could not load service details');
+      return;
+    }
+
+    currentService = local;
+    renderServiceDetail(local);
+    showPage('service-detail');
+  }
+}
+
+function renderServiceDetail(service) {
+  document.getElementById('detail-category').textContent = service.category || 'Other';
+  document.getElementById('detail-title').textContent = service.title;
+  document.getElementById('detail-seller').textContent = 'by ' + service.seller;
+  document.getElementById('detail-desc').textContent = service.description || 'No description provided.';
+  document.getElementById('detail-delivery').textContent = 'Delivery: ' + service.deliveryDays + ' day(s)';
+  document.getElementById('detail-rating').textContent = 'Rating: ' + service.rating + ' (' + service.reviews + ' reviews)';
+  document.getElementById('detail-price').textContent = '$' + service.price;
 }
 
 // ---- SEARCH ----
@@ -116,9 +150,9 @@ function openModal(service) {
   document.getElementById('service-modal').classList.add('open');
 }
 
-function closeModal() {
+function closeModal(clearSelection = true) {
   document.getElementById('service-modal').classList.remove('open');
-  currentService = null;
+  if (clearSelection) currentService = null;
 }
 
 function openConfirm(action) {
@@ -133,19 +167,24 @@ function closeConfirm() {
 // ---- SAVE / HIRE ----
 async function saveService() {
   if (!currentService) return;
-  closeModal();
+  closeModal(false);
   openConfirm('save');
 }
 
 async function hireService() {
   if (!currentService) return;
-  closeModal();
+  closeModal(false);
   openConfirm('hire');
 }
 
 async function confirmAction() {
   const action = document.getElementById('confirm-action').textContent;
   closeConfirm();
+
+  if (!currentService) {
+    showToast('No service selected');
+    return;
+  }
 
   // action ke hisaab se endpoint choose karo
   const endpoint = action === 'save' ? '/save' : '/hire';
@@ -158,7 +197,7 @@ async function confirmAction() {
     });
 
     const data = await res.json();
-    showToast(data.message);
+    showToast(data.message || 'Action completed');
     loadDashboard();
   } catch (err) {
     showToast('Something went wrong');
