@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FreelanceHub</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- navbar -->
+  <nav>
+    <div class="logo">FreelanceHub</div>
+    <ul class="nav-links">
+      <li><a href="#" data-page="home" class="active" onclick="showPage('home')">Home</a></li>
+      <li><a href="#" data-page="services" onclick="showPage('services')">Services</a></li>
+      <li><a href="#" data-page="dashboard" onclick="showPage('dashboard')">Dashboard</a></li>
+    </ul>
+  </nav>
+
+  <!-- HOME PAGE -->
+  <div class="page active" id="home">
+    <div class="hero">
+      <h1>Find Freelance Services</h1>
+      <p>Browse top services, hire talent, and get work done.</p>
+      <br/>
+      <button class="btn btn-primary" onclick="showPage('services')">Browse Services</button>
+    </div>
+
+    <!-- drag drop zone - home pe bhi hai for demo -->
+    <p style="color:#666; font-size:12px; margin-bottom:8px;">Drag any service card here to save it</p>
+    <div class="drop-zone" id="drop-zone">
+      Drop a service card here to save it
+    </div>
+
+    <!-- Add Service Form -->
+    <div style="margin-top:30px; max-width:480px;">
+      <h2 style="font-size:15px; color:#e0e0e0; margin-bottom:16px; border-bottom:1px solid #2e2e2e; padding-bottom:6px;">
+        Add New Service (Bonus)
+      </h2>
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" id="new-title" placeholder="e.g. Logo Design" />
+      </div>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="new-seller" placeholder="Seller name" />
+      </div>
+      <div class="form-group">
+        <label>Price ($)</label>
+        <input type="number" id="new-price" placeholder="25" />
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <select id="new-category">
+          <option value="Design">Design</option>
+          <option value="Web Dev">Web Dev</option>
+          <option value="Programming">Programming</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Writing">Writing</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="new-desc" placeholder="What will you offer?"></textarea>
+      </div>
+      <button class="btn btn-primary" onclick="submitNewService()">Add Service</button>
+    </div>
+  </div>
+
+  <!-- SERVICES PAGE -->
+  <div class="page" id="services">
+    <div class="controls">
+      <input type="text" id="search-input" placeholder="Search services..." oninput="handleSearch()" />
+      <select id="filter-category" onchange="applyFiltersAndSort()">
+        <option value="all">All Categories</option>
+        <option value="Design">Design</option>
+        <option value="Web Dev">Web Dev</option>
+        <option value="Programming">Programming</option>
+        <option value="Marketing">Marketing</option>
+        <option value="Writing">Writing</option>
+      </select>
+      <input type="number" id="filter-price" placeholder="Max price ($)" oninput="applyFiltersAndSort()" style="max-width:130px;" />
+      <select id="sort-by" onchange="applyFiltersAndSort()">
+        <option value="">Sort by</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="rating">Rating</option>
+      </select>
+    </div>
+
+    <div class="services-grid" id="services-container">
+      <p class="empty-msg">Loading...</p>
+    </div>
+  </div>
+
+  <!-- DASHBOARD PAGE -->
+  <div class="page" id="dashboard">
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="num" id="stat-saved">0</div>
+        <div class="label">Saved</div>
+      </div>
+      <div class="stat-box">
+        <div class="num" id="stat-hired">0</div>
+        <div class="label">Hired</div>
+      </div>
+    </div>
+
+    <div class="dashboard-section">
+      <h2>Saved Services</h2>
+      <div class="dashboard-list" id="saved-list">
+        <p class="empty-msg">Nothing here yet</p>
+      </div>
+    </div>
+
+    <div class="dashboard-section">
+      <h2>Hired Services</h2>
+      <div class="dashboard-list" id="hired-list">
+        <p class="empty-msg">Nothing here yet</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICE DETAIL MODAL -->
+  <div class="modal-overlay" id="service-modal" onclick="if(event.target===this)closeModal()">
+    <div class="modal" style="position:relative">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <h2 id="modal-title"></h2>
+      <p id="modal-seller" style="margin-bottom:12px;"></p>
+      <p id="modal-desc"></p>
+      <p style="margin-top:12px;" id="modal-delivery"></p>
+      <p style="margin-top:6px;"><strong id="modal-price" style="color:#fff;font-size:18px;"></strong></p>
+      <p style="margin-top:4px;" id="modal-rating"></p>
+      <div class="modal-actions">
+        <button class="btn" onclick="saveService()">Save</button>
+        <button class="btn btn-primary" onclick="hireService()">Hire Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONFIRM MODAL -->
+  <div class="modal-overlay" id="confirm-modal" onclick="if(event.target===this)closeConfirm()">
+    <div class="modal" style="position:relative">
+      <button class="modal-close" onclick="closeConfirm()">×</button>
+      <h2>Confirm</h2>
+      <p>Are you sure you want to <strong><span id="confirm-action"></span></strong> this service?</p>
+      <div class="modal-actions">
+        <button class="btn" onclick="closeConfirm()">Cancel</button>
+        <button class="btn btn-primary" onclick="confirmAction()">Yes, Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
