@@ -7,7 +7,7 @@ BCS (FinTech) — Web Technologies
 
 ## What is this
 
-A full-stack freelance service platform built with Express.js (backend) and vanilla HTML/CSS/JS (frontend). Users can browse services, search/filter/sort them, save or hire services, and add new ones.
+A full-stack freelance service platform built with Express.js (backend) and vanilla HTML/CSS/JS (frontend). Users can browse services, search/filter/sort them, save or hire services, and add new ones from a dedicated Add Service page.
 
 ---
 
@@ -20,7 +20,8 @@ A full-stack freelance service platform built with Express.js (backend) and vani
 - Save / Hire services (with confirm modal)
 - Drag and drop a card to save
 - User dashboard showing saved and hired services
-- Add new service (bonus endpoint)
+- Dedicated Add Service page (`add-service.html`) for creating new listings
+- Add new service API integration (bonus endpoint)
 
 ---
 
@@ -54,6 +55,13 @@ npm start
 http://localhost:3000
 ```
 
+### Frontend Pages
+
+- `index.html` - Home, Services, Service Detail, and Dashboard sections
+- `add-service.html` - Standalone page for adding a new service
+
+Tip: direct links like `index.html#services` and `index.html#dashboard` open those sections immediately.
+
 ---
 
 ## Project Structure
@@ -62,8 +70,11 @@ http://localhost:3000
 /FreelanceHub
 │── /client
 │     ├── index.html
+│     ├── add-service.html
 │     ├── /css/style.css
-│     └── /js/main.js
+│     └── /js
+│           ├── main.js
+│           └── add-service.js
 │── /server
 │     ├── server.js
 │     ├── /routes/services.js
