@@ -8,6 +8,11 @@ window.addEventListener('load', () => {
   fetchServices();
   loadDashboard();
   setupDragDrop();
+
+  const hashPage = window.location.hash.replace('#', '');
+  if (hashPage && document.getElementById(hashPage)) {
+    showPage(hashPage);
+  }
 });
 
 // ---- NAVIGATION ----
@@ -286,39 +291,6 @@ function renderDashboardList(containerId, items) {
     `;
     container.appendChild(div);
   });
-}
-
-// ---- ADD SERVICE ----
-async function submitNewService() {
-  const title = document.getElementById('new-title').value;
-  const seller = document.getElementById('new-seller').value;
-  const price = document.getElementById('new-price').value;
-  const category = document.getElementById('new-category').value;
-  const desc = document.getElementById('new-desc').value;
-
-  if (!title || !seller || !price) {
-    showToast('Please fill all required fields');
-    return;
-  }
-
-  try {
-    const res = await fetch(`${API}/services`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, seller, price, category, description: desc })
-    });
-
-    // res.ok check bhool gaya - ye bug hai
-    const data = await res.json();
-    showToast('Service added!');
-    fetchServices();
-
-    ['new-title', 'new-seller', 'new-price', 'new-desc'].forEach(id => {
-      document.getElementById(id).value = '';
-    });
-  } catch (err) {
-    showToast('Failed to add service');
-  }
 }
 
 // ---- TOAST ----

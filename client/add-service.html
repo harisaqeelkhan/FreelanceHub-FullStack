@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Service | FreelanceHub</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav>
+    <div class="logo">FreelanceHub</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#dashboard">Dashboard</a></li>
+      <li><a href="add-service.html" class="active">Add Service</a></li>
+    </ul>
+  </nav>
+
+  <div class="page active" id="add-service-page">
+    <div style="max-width:560px; margin:0 auto;">
+      <h1 style="font-size:26px; margin-bottom:8px;">Add New Service</h1>
+      <p style="color:var(--muted); margin-bottom:24px;">Create a service listing and publish it to FreelanceHub.</p>
+
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" id="new-title" placeholder="e.g. Logo Design" />
+      </div>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="new-seller" placeholder="Seller name" />
+      </div>
+      <div class="form-group">
+        <label>Price (PKR)</label>
+        <input type="number" id="new-price" placeholder="25" />
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <select id="new-category">
+          <option value="Design">Design</option>
+          <option value="Web Dev">Web Dev</option>
+          <option value="Programming">Programming</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Writing">Writing</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="new-desc" placeholder="What will you offer?"></textarea>
+      </div>
+
+      <div style="display:flex; gap:10px; margin-top:18px; flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="submitNewService()">Add Service</button>
+        <button class="btn" onclick="window.location.href='index.html'">Back to Home</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/add-service.js"></script>
+</body>
+</html>

@@ -15,6 +15,7 @@
       <li><a href="#" data-page="home" class="active" onclick="showPage('home')">Home</a></li>
       <li><a href="#" data-page="services" onclick="showPage('services')">Services</a></li>
       <li><a href="#" data-page="dashboard" onclick="showPage('dashboard')">Dashboard</a></li>
+      <li><a href="add-service.html">Add Service</a></li>
     </ul>
   </nav>
 
@@ -25,41 +26,7 @@
       <p>Browse top services, hire talent, and get work done.</p>
       <br/>
       <button class="btn btn-primary" onclick="showPage('services')">Browse Services</button>
-    </div>
-
-    <!-- Add Service Form -->
-    <div style="margin-top:30px; max-width:480px;">
-      <h2 style="font-size:15px; color:#e0e0e0; margin-bottom:16px; border-bottom:1px solid #2e2e2e; padding-bottom:6px;">
-        Add New Service (Bonus)
-      </h2>
-      <div class="form-group">
-        <label>Title</label>
-        <input type="text" id="new-title" placeholder="e.g. Logo Design" />
-      </div>
-      <div class="form-group">
-        <label>Your Name</label>
-        <input type="text" id="new-seller" placeholder="Seller name" />
-      </div>
-      <div class="form-group">
-        <label>Price (PKR)</label>
-        <input type="number" id="new-price" placeholder="25" />
-      </div>
-      <div class="form-group">
-        <label>Category</label>
-        <select id="new-category">
-          <option value="Design">Design</option>
-          <option value="Web Dev">Web Dev</option>
-          <option value="Programming">Programming</option>
-          <option value="Marketing">Marketing</option>
-          <option value="Writing">Writing</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Description</label>
-        <textarea id="new-desc" placeholder="What will you offer?"></textarea>
-      </div>
-      <button class="btn btn-primary" onclick="submitNewService()">Add Service</button>
+      <button class="btn" onclick="window.location.href='add-service.html'" style="margin-left:10px;">Add New Service</button>
     </div>
   </div>
 
